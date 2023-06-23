@@ -1,6 +1,0 @@
-C:/Users/duded/source/repos/disasterlauncher/out/build/x86-release/CMakeFiles/disasterlauncher.dir
-C:/Users/duded/source/repos/disasterlauncher/out/build/x86-release/CMakeFiles/edit_cache.dir
-C:/Users/duded/source/repos/disasterlauncher/out/build/x86-release/CMakeFiles/rebuild_cache.dir
-C:/Users/duded/source/repos/disasterlauncher/out/build/x86-release/CMakeFiles/list_install_components.dir
-C:/Users/duded/source/repos/disasterlauncher/out/build/x86-release/CMakeFiles/install.dir
-C:/Users/duded/source/repos/disasterlauncher/out/build/x86-release/CMakeFiles/install/local.dir
