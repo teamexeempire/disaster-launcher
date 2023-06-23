@@ -1,0 +1,8 @@
+[22:09:05  INFO] ===================
+[22:09:05  INFO] TD2DR Server
+[22:09:05  INFO] BUILD v326
+[22:09:05  INFO] (c) Team Exe Empire 2023
+[22:09:05  INFO] ===================
+[22:09:05  INFO] Enter localhost or 127.0.0.1 on your PC to join the server.
+
+[22:09:05 Server 1 INFO] Caught SocketError: AddressAlreadyInUse
