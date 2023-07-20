@@ -73,35 +73,42 @@ void task_update(taskmgr_t* mgr)
 	const char* newTag = json_string_value(tag);
 	char oldTag[32];
 
-	FILE* file = fopen("version", "rb");
-
-	if (!file)
+	if (!fs_exists("game") || !fs_exists("server"))
 	{
 		task_install(mgr, root);
 	}
 	else
 	{
-		fseek(file, 0, SEEK_END);
+		FILE* file = fopen("version", "rb");
 
-		long size = ftell(file);
-		fseek(file, 0, SEEK_SET);
-
-		if (size >= 32)
+		if (!file)
 		{
-			fclose(file);
 			task_install(mgr, root);
 		}
 		else
 		{
-			fread(oldTag, 32, 1, file);
-			fclose(file);
+			fseek(file, 0, SEEK_END);
 
-			oldTag[size] = 0;
+			long size = ftell(file);
+			fseek(file, 0, SEEK_SET);
 
-			if (strcmp(oldTag, newTag) != 0)
+			if (size >= 32)
+			{
+				fclose(file);
 				task_install(mgr, root);
+			}
+			else
+			{
+				fread(oldTag, 32, 1, file);
+				fclose(file);
+
+				oldTag[size] = 0;
+
+				if (strcmp(oldTag, newTag) != 0)
+					task_install(mgr, root);
+			}
 		}
-	}
+	} 
 
 	json_decref(root);
 	web_free(req);

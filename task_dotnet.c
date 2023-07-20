@@ -66,7 +66,7 @@ void task_ui_prog2(void* opt, double progress)
 	lock_ui;
 	{
 		char prg[6];
-		snprintf(prg, 6, "%d", (int)(progress * 100));
+		snprintf(prg, 6, "%d%%", (int)(progress * 100));
 
 		label_set_text(LABEL(component_find(gComponents, "prog")), prg);
 		IMAGE(component_find(gComponents, "progval"))->src.w = 480 * progress;
