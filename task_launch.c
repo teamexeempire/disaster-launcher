@@ -6,6 +6,14 @@
 
 #include <string.h>
 
+#ifdef _WIN32
+#define GAME_EXEC "\"game/Sonicexe The Disaster 2D Remake.exe\""
+#define SERVER_EXEC "server/BetterServer.exe"
+#else
+#define GAME_EXEC "\"./game/Sonicexe The Disaster 2D Remake.AppImage\""
+#define SERVER_EXEC "./server/BetterServer"
+#endif
+
 void task_runexec(const string filename, const string cwd)
 {
 #ifdef _WIN32
@@ -119,8 +127,7 @@ void task_launch_game(taskmgr_t* mgr)
 	task_show_status(mgr, TRUE);
 
 	task_update(mgr);
-	task_install_dotnet(mgr);
-	task_runexec("\"game/Sonicexe The Disaster 2D Remake.exe\"", "game");
+	task_runexec(GAME_EXEC, "game");
 
 	task_show_status(mgr, FALSE);
 	mgr->_running = FALSE;
@@ -130,12 +137,8 @@ void task_launch_server(taskmgr_t* mgr)
 {
 	task_show_status(mgr, TRUE);
 	task_update(mgr);
-	task_install_dotnet(mgr);
 
-	if (!task_check_dotnet())
-		EMSGBX("Failed to find .NET 7");
-
-	task_runexec("server/BetterServer.exe", "server");
+	task_runexec(SERVER_EXEC, "server");
 	task_show_status(mgr, FALSE);
 	mgr->_running = FALSE;
 }

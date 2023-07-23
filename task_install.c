@@ -7,6 +7,14 @@
 #include <string.h>
 #include <minizip/unzip.h>
 
+#ifdef _WIN32
+#define DISASTER_NAME "DisasterWin"
+#define SERVER_NAME "BetterServerWin"
+#else
+#define DISASTER_NAME "DisasterLinux"
+#define SERVER_NAME "BetterServerLinux"
+#endif
+
 static void task_ui_prog1(void* opt, double progress)
 {
 	taskmgr_t* mgr = (taskmgr_t*)opt;
@@ -143,7 +151,7 @@ void task_install(taskmgr_t* mgr, json_t* root)
 	{
 		label_t* status = LABEL(component_find(gComponents, "status"));
 
-		if (!tag)
+		if (!tag || !status)
 			EMSGBX("whar???");
 
 		char buffer[128];
@@ -175,16 +183,16 @@ void task_install(taskmgr_t* mgr, json_t* root)
 		const char* tName = json_string_value(name);
 		const char* tUrl = json_string_value(url);
 
-		if (strstr(tName, "DisasterWin"))
+		if (strstr(tName, DISASTER_NAME))
 			gameUrl = tUrl;
 
-		if (strstr(tName, "BetterServerWin"))
+		if (strstr(tName, SERVER_NAME))
 			serverUrl = tUrl;
 	}
 
 	if (!gameUrl || !serverUrl)
 	{
-		EMSGBX("Couldn't find gameUrl or serverUrl!");
+		EMSGBX("Couldn't find gameUrl or serverUrl! (pair %s, %s)", DISASTER_NAME, SERVER_NAME);
 		return;
 	}
 

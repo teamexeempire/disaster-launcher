@@ -1,5 +1,6 @@
 #include "log.h"
 
+#include <SDL2/SDL_error.h>
 #include <stdio.h>
 #include <time.h>
 #include <stdarg.h>
@@ -53,6 +54,14 @@ void log_msgboxf(const string fmt, const string file, int line, ...)
     char finBuffer[2048];
     snprintf(finBuffer, 2048, "File: %s                                           \nLine: %d\n\n%s", file, line, buffer);
 
-    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Runtime Error! (Please contact developers)", finBuffer, NULL);
+    if(SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Runtime Error! (Please contact developers)", finBuffer, NULL) < 0)
+    {
+        ILOG("Failed to show error: %s", SDL_GetError());
+        va_list args;
+        va_start(args, line);
+        vprintf(fmt, args);
+        va_end(args);
+        putchar('\n');
+    }
     exit(1);
 }

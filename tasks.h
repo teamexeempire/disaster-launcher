@@ -24,7 +24,6 @@ void		task_show_progress	(taskmgr_t* mgr, boolean toggle);
 void		task_show_status	(taskmgr_t* mgr, boolean toggle);
 
 // tasks
-void		task_install_dotnet (taskmgr_t* mgr);
 void		task_fetch_info		(taskmgr_t* mgr);
 void		task_launch_game	(taskmgr_t* mgr);
 void		task_launch_server	(taskmgr_t* mgr);

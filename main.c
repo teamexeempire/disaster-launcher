@@ -4,11 +4,16 @@
 
 #include <SDL2/SDL.h>
 #include <curl/curl.h>
-#include <windows.h>
+
+#ifdef _WIN32
+	#include <windows.h>
+#endif
+
 #include "imporktant.h"
 
 int main(int argc, char* argv[])
 {
+#ifdef _WIN32
 	WCHAR buffer[MAX_PATH] = { 0 };
 	GetModuleFileNameW(NULL, buffer, MAX_PATH);
 
@@ -35,7 +40,7 @@ int main(int argc, char* argv[])
 		SDL_Quit();
 		return 0;
 	}
-
+#endif
 
 	if (!gui_init())
 		return 1;
