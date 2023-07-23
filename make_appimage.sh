@@ -1,5 +1,6 @@
 mkdir build
 cd build
+export CC=/usr/bin/clang
 cmake .. -DCMAKE_INSTALL_PREFIX=/usr
 make -j$(nproc)
 make install DESTDIR=AppDir
