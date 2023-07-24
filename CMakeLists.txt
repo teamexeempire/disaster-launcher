@@ -19,12 +19,6 @@ if(MSVC)
 	include(FindCurl)
 	find_package(SDL2 CONFIG REQUIRED)
 	find_package(jansson CONFIG REQUIRED)
-	find_package(unofficial-minizip CONFIG REQUIRED)
-	find_package(PThreads4W)
-
-	if(NOT PThreads4W_FOUND)
-		find_package(Threads REQUIRED)
-	endif()
 
 	add_executable(disasterlauncher WIN32 "appicon.rc")
 	target_link_libraries(disasterlauncher PRIVATE SDL2::SDL2main SDL2::SDL2 jansson::jansson unofficial::minizip::minizip ${CURL_LIBRARIES} wsock32 ws2_32)
@@ -38,9 +32,6 @@ else()
 	find_package(SDL2 CONFIG REQUIRED)
 	pkg_check_modules(CURL libcurl)
 	pkg_check_modules(JSON jansson)
-
-	set(THREADS_PREFER_PTHREAD_FLAG ON)
-	find_package(Threads REQUIRED)
 
 	add_executable(disasterlauncher "")
 	target_link_libraries(disasterlauncher PRIVATE SDL2::SDL2main SDL2::SDL2 ${JSON_LIBRARIES} ${MINIZ_LIBRARIES} ${CURL_LIBRARIES})
