@@ -34,8 +34,8 @@ jobs:
           vcpkgDirectory: '${{ github.workspace }}/vcpkg'
           vcpkgGitCommitId: 'd765306b074717dea8dc1c4723e1b025acb61c2d'
           
+      - uses: ilammy/msvc-dev-cmd@v1
       - name: Build
-        uses: ilammy/msvc-dev-cmd@v1
         uses: lukka/run-cmake@v3
         with:
           cmakeAppendedArgs: -A x64
