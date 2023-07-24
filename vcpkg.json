@@ -3,7 +3,8 @@
     "dependencies": [
       "sdl2",
       "jansson",
-      "curl"
+      "curl",
+      "zlib"
     ]
   }
   
