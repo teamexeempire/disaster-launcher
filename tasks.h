@@ -9,6 +9,19 @@
 #define CHANGELOG_URL "https://raw.githubusercontent.com/teamexeempire/disasterserver/main/changelog.txt"
 #define LATEST_URL "https://api.github.com/repos/teamexeempire/disasterserver/releases/latest"
 
+#ifdef _WIN32
+#define GAME_EXEC "\"game/Sonicexe The Disaster 2D Remake.exe\""
+#define SERVER_EXEC "server/BetterServer.exe"
+#define DISASTER_NAME "DisasterWin"
+#define SERVER_NAME "BetterServerWin"
+#else
+#define GAME_EXEC "\"./Sonicexe The Disaster 2D Remake.AppImage\""
+#define SERVER_EXEC "./BetterServer"
+#define DISASTER_NAME "DisasterLinux"
+#define SERVER_NAME "BetterServerLinux"
+#endif
+
+
 typedef struct
 {
 	boolean _running;

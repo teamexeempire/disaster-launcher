@@ -7,14 +7,6 @@
 #include <string.h>
 #include <minizip/unzip.h>
 
-#ifdef _WIN32
-#define DISASTER_NAME "DisasterWin"
-#define SERVER_NAME "BetterServerWin"
-#else
-#define DISASTER_NAME "DisasterLinux"
-#define SERVER_NAME "BetterServerLinux"
-#endif
-
 static void task_ui_prog1(void* opt, double progress)
 {
 	taskmgr_t* mgr = (taskmgr_t*)opt;
@@ -208,19 +200,27 @@ void task_install(taskmgr_t* mgr, json_t* root)
 	if (fs_exists("game"))
 		task_runexec("rm -rf game", ".");
 
-	fs_mkdir("game");
-
 	// Download game
+	fs_mkdir("game");
 	task_dl_extract(mgr, gameUrl, "tmp/disaster.zip", "game/");
+
+#ifdef __unix__
+	task_runexec("chmod +x " GAME_EXEC, "game");
+#endif
+
 	remove("tmp/disaster.zip");
 
-	// Create server folder
 	if (fs_exists("server"))
 		task_runexec("rm -rf server", ".");
 	
+	// Download server
 	fs_mkdir("server");
-
 	task_dl_extract(mgr, serverUrl, "tmp/server.zip", "server/");
+
+#ifdef __unix__
+	task_runexec("chmod +x " SERVER_EXEC, "server");
+#endif
+
 	remove("tmp/server.zip");
 
 	// Everything is done, write version file

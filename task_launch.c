@@ -5,15 +5,6 @@
 #include "fs.h"
 
 #include <string.h>
-
-#ifdef _WIN32
-#define GAME_EXEC "\"game/Sonicexe The Disaster 2D Remake.exe\""
-#define SERVER_EXEC "server/BetterServer.exe"
-#else
-#define GAME_EXEC "\"game/Sonicexe The Disaster 2D Remake.AppImage\""
-#define SERVER_EXEC "server/BetterServer"
-#endif
-
 void task_runexec(const string filename, const string cwd)
 {
 #ifdef _WIN32
