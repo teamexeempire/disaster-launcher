@@ -22,6 +22,10 @@ sock_t*		usSock = NULL;
 float		bgFrame = 0;
 float		bgPos = 0;
 
+#define COLOR_GREEN ((SDL_Color){ 40, 255, 40  })
+#define COLOR_RED ((SDL_Color){ 224, 0, 0  })
+#define COLOR_WHITE ((SDL_Color){ 255, 255, 255  })
+
 void gui_euserver(uint8_t* buffer, size_t len)
 {
 	if (len < 64)
@@ -51,7 +55,17 @@ void gui_euserver(uint8_t* buffer, size_t len)
 			snprintf(text, 16, "%d %d", players, maxPlayers);
 			label_set_text(label, text);
 
-			icon->color = (state > 0 || players >= maxPlayers) ? (SDL_Color) { 255, 0, 0 } : (SDL_Color) { 255, 255, 255 };
+			if(players >= maxPlayers)
+			{
+				icon->color = COLOR_RED;
+			}
+			else
+			{
+				if(state > 0)
+					icon->color = COLOR_GREEN;
+				else
+					icon->color = COLOR_WHITE;
+			}
 		}
 		unlock_ui;
 	}
@@ -86,7 +100,17 @@ void gui_usserver(uint8_t* buffer, size_t len)
 			snprintf(text, 16, "%d %d", players, maxPlayers);
 			label_set_text(label, text);
 
-			icon->color = (state > 0 || players >= maxPlayers) ? (SDL_Color) { 255, 0, 0 } : (SDL_Color) { 255, 255, 255 };
+			if(players >= maxPlayers)
+			{
+				icon->color = COLOR_RED;
+			}
+			else
+			{
+				if(state > 0)
+					icon->color = COLOR_GREEN;
+				else
+					icon->color = COLOR_WHITE;
+			}
 		}
 		unlock_ui;
 	}
@@ -221,14 +245,14 @@ void gui_build_menu(void)
 		image->src.y = 0;
 		image->src.w = 48;
 		image->src.h = 48;
-		component_push(gComponents, image);
+		component_push(gComponents, COMPONENT(image));
 
 		snprintf(name, 16, "lb%d", i);
 		label = label_create_ext("0 7", name);
 		label->x = 108 + 80 * i;
 		label->y = 39;
 		label->scale = 2;
-		component_push(gComponents, label);
+		component_push(gComponents, COMPONENT(label));
 	}
 }
 
