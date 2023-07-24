@@ -10,49 +10,6 @@ env:
   BUILD_TYPE: RelWithDebInfo
 
 jobs:
-   windows:
-    name: win-${{ matrix.buildtype }}
-    runs-on: windows-latest
-    strategy:
-      matrix:
-        buildtype: [ Debug, RelWithDebInfo, MinSizeRel ]
-        mindeps: [ false ]
-        include:
-          - buildtype: RelWithDebInfo
-            mindeps: true
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          submodules: true
-
-      - uses: ilammy/msvc-dev-cmd@v1
-          
-      - name: Fetch CMake
-        uses: lukka/get-cmake@v3.21.2
-        
-      - name: Fetch VCPKG
-        uses: lukka/run-vcpkg@v11
-        with:
-          vcpkgDirectory: '${{ github.workspace }}/vcpkg'
-          vcpkgGitCommitId: 'd765306b074717dea8dc1c4723e1b025acb61c2d'
-          runVcpkgInstall: true
-          
-      - name: Build
-        uses: lukka/run-cmake@v3
-        env:
-          CC: cl
-          CXX: cl
-        with:
-          cmakeAppendedArgs: -A x64 -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake"
-          buildDirectory: ${{ runner.workspace }}/build
-          cmakeBuildType: ${{ matrix.buildtype }}
-
-      - name: Upload build
-        uses: actions/upload-artifact@v2
-        with:
-          name: windows-${{ matrix.buildtype }}-x86_64
-          path: ${{ runner.workspace }}/build
-      
    ubuntu:
     name: linux-${{ matrix.buildtype }}
     runs-on: ubuntu-20.04
