@@ -292,7 +292,7 @@ boolean gui_init(void)
 	euSock = sock_open("185.217.199.37", 12084);
 	usSock = sock_open("67.205.188.92", 12084);
 	if (!euSock || !usSock)
-		return;
+		return FALSE;
 
 	euSock->onrecv = gui_euserver;
 	usSock->onrecv = gui_usserver;

@@ -19,6 +19,8 @@ typedef struct
 #define lock_ui   (SDL_LockMutex(mgr->_mutex))
 #define unlock_ui (SDL_UnlockMutex(mgr->_mutex))
 
+#define json_foreach(array, index, value) for (index = 0; index < json_array_size(array) && (value = json_array_get(array, index)); index++)
+
 // ui functions
 void		task_show_progress	(taskmgr_t* mgr, boolean toggle);
 void		task_show_status	(taskmgr_t* mgr, boolean toggle);

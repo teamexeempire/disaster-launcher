@@ -172,7 +172,7 @@ void task_install(taskmgr_t* mgr, json_t* root)
 	const char* serverUrl = NULL;
 
 	size_t i; json_t* obj;
-	json_array_foreach(arr, i, obj)
+	json_foreach(arr, i, obj)
 	{
 		json_t* name = json_object_get(obj, "name");
 		json_t* url = json_object_get(obj, "url");
