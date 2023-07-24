@@ -17,6 +17,7 @@ jobs:
       matrix:
         buildtype: [ Debug, RelWithDebInfo, MinSizeRel ]
         mindeps: [ false ]
+        vcpkgCommitId: d765306b074717dea8dc1c4723e1b025acb61c2d
         include:
           - buildtype: RelWithDebInfo
             mindeps: true
@@ -30,6 +31,10 @@ jobs:
         
       - name: Fetch VCPKG
         uses: lukka/run-vcpkg@v11
+        with:
+          vcpkgDirectory: '${{ github.workspace }}/vcpkg'
+          vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
+
           
       - name: Build
         uses: lukka/run-cmake@v3
