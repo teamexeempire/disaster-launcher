@@ -35,6 +35,7 @@ jobs:
         with:
           vcpkgDirectory: '${{ github.workspace }}/vcpkg'
           vcpkgGitCommitId: 'd765306b074717dea8dc1c4723e1b025acb61c2d'
+          runVcpkgInstall: true
           
       - name: Build
         uses: lukka/run-cmake@v3
@@ -42,7 +43,7 @@ jobs:
           CC: cl
           CXX: cl
         with:
-          cmakeAppendedArgs: -A x64
+          cmakeAppendedArgs: -A x64 -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake"
           buildDirectory: ${{ runner.workspace }}/build
           cmakeBuildType: ${{ matrix.buildtype }}
 
