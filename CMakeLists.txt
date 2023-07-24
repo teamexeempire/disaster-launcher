@@ -29,12 +29,12 @@ else()
 		message(FATAL_ERROR "Failed to find pkg_config!")
 	endif()
 
-	find_package(SDL2 CONFIG REQUIRED)
+	pkg_check_modules(SDL2 sdl2)
 	pkg_check_modules(CURL libcurl)
 	pkg_check_modules(JSON jansson)
 
 	add_executable(disasterlauncher "")
-	target_link_libraries(disasterlauncher PRIVATE SDL2::SDL2main SDL2::SDL2 ${JSON_LIBRARIES} ${MINIZ_LIBRARIES} ${CURL_LIBRARIES})
+	target_link_libraries(disasterlauncher PRIVATE ${SDL2_LIBRARIES} ${JSON_LIBRARIES} ${MINIZ_LIBRARIES} ${CURL_LIBRARIES})
 endif()
 
 target_link_libraries(disasterlauncher PRIVATE minizip)
