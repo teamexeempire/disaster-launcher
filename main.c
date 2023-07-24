@@ -7,9 +7,8 @@
 
 #ifdef _WIN32
 	#include <windows.h>
+	#include "imporktant.h"
 #endif
-
-#include "imporktant.h"
 
 int main(int argc, char* argv[])
 {

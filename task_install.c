@@ -145,7 +145,7 @@ void task_install(taskmgr_t* mgr, json_t* root)
 {
 	task_show_progress(mgr, TRUE);
 	json_t* tag = json_object_get(root, "tag_name");
-	const string tagName = json_string_value(tag);
+	const char* tagName = json_string_value(tag);
 
 	lock_ui;
 	{
