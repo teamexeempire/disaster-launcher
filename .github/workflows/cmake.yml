@@ -24,6 +24,8 @@ jobs:
       - uses: actions/checkout@v1
         with:
           submodules: true
+
+      - uses: ilammy/msvc-dev-cmd@v1
           
       - name: Fetch CMake
         uses: lukka/get-cmake@v3.21.2
@@ -34,9 +36,11 @@ jobs:
           vcpkgDirectory: '${{ github.workspace }}/vcpkg'
           vcpkgGitCommitId: 'd765306b074717dea8dc1c4723e1b025acb61c2d'
           
-      - uses: ilammy/msvc-dev-cmd@v1
       - name: Build
         uses: lukka/run-cmake@v3
+        env:
+          CC: cl
+          CXX: cl
         with:
           cmakeAppendedArgs: -A x64
           buildDirectory: ${{ runner.workspace }}/build
