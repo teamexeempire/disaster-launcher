@@ -36,12 +36,20 @@ void task_fetch_info(taskmgr_t* mgr)
 {
 	webrequest_t* request = web_init();
 	web_set_url(request, CHANGELOG_URL);
-	web_set_auth(request, AUTH);
 	web_perform(request);
 
 	if (!request->success)
 	{
-		EMSGBX("Failed to fetch game info: %s", web_geterror(request));
+		lock_ui;
+		{
+			label_t* text = LABEL(component_find(gComponents, "changelog"));
+			text->color = (SDL_Color) { 225, 0, 0 };
+			if(text)
+				label_set_text(text, "Failed to fetch info from github!");
+		}
+		unlock_ui;
+
+		ILOG("Failed to fetch game info: %s", web_geterror(request));
 		web_free(request);
 		return;
 	}

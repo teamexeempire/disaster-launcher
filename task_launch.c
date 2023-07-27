@@ -34,7 +34,6 @@ void task_update(taskmgr_t* mgr)
 	// Check for updates
 	webrequest_t* req = web_init();
 	web_set_url(req, LATEST_URL);
-	web_set_auth(req, AUTH);
 	web_perform(req);
 
 	// check for errors

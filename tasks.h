@@ -5,9 +5,8 @@
 #include <jansson.h>
 #include <SDL2/SDL.h>
 
-#define AUTH "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"
 #define CHANGELOG_URL "https://raw.githubusercontent.com/teamexeempire/disasterserver/main/changelog.txt"
-#define LATEST_URL "https://api.github.com/repos/teamexeempire/disasterserver/releases/latest"
+#define LATEST_URL "https://api.github.com/repos/teamexeempire/disaster-launcher/releases/latest"
 
 #ifdef _WIN32
 #define GAME_EXEC "\"game/Sonicexe The Disaster 2D Remake.exe\""
@@ -20,7 +19,6 @@
 #define DISASTER_NAME "DisasterLinux"
 #define SERVER_NAME "BetterServerLinux"
 #endif
-
 
 typedef struct
 {

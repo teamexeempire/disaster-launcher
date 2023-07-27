@@ -118,7 +118,6 @@ void task_dl_extract(taskmgr_t* mgr, const string url, const string filename, co
 {
 	webrequest_t* web = web_init();
 	web_set_url(web, url);
-	web_set_auth(web, AUTH);
 	web_set_progress(web, task_ui_prog1);
 	web_set_progress_data(web, mgr);
 
