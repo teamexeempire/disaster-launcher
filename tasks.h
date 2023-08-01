@@ -30,6 +30,9 @@ typedef struct
 #define lock_ui   (SDL_LockMutex(mgr->_mutex))
 #define unlock_ui (SDL_UnlockMutex(mgr->_mutex))
 
+#ifdef json_foreach
+#undef json_foreach
+#endif
 #define json_foreach(array, index, value) for (index = 0; index < json_array_size(array) && (value = json_array_get(array, index)); index++)
 
 // ui functions
