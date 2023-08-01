@@ -12,9 +12,9 @@
 ## Linux
 1. Install following dependencies (as root):
     #### Arch Linux:
-    `$ pacman -S git gcc cmake make sdl2 jansson curl`
+    `$ pacman -S git base-devel gcc cmake make sdl2 jansson curl`
     #### Ubuntu (and probably Debian):
-    `$ apt install git gcc cmake make libsdl2-dev libjansson-dev libcurl4-gnutls-dev`
+    `$ apt install git build-essential gcc cmake make libsdl2-dev libjansson-dev libcurl4-gnutls-dev`
     #### Fedora (untested)
     `$ dnf install git gcc cmake make SDL2-devel libcurl-devel jansson-devel`
 
