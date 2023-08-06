@@ -19,5 +19,5 @@
     `$ dnf install git gcc cmake make SDL2-devel libcurl-devel jansson-devel`
 
 2. `git clone --recurse-submodules https://github.com/teamexeempire/disaster-launcher `
-4. `cd disaster-launcher && vcpkg install`
+4. `cd disaster-launcher`
 5. `cmake -S . -B build && cmake --build build`
